@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Meal Planning App",
+  "name": "The Busy Home Meal Planning App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,14 +8,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "tbh-logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x42"
     },
     {
-      "src": "logo512.png",
+      "src": "tbh-logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x114"
     }
   ],
   "start_url": ".",
