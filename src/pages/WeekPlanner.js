@@ -1,5 +1,12 @@
+import { TabNavigation } from '../components/TabNavigation';
 
-
-export function WeekPlanner() {
-    return <h1>Week planner page</h1>
+function WeekPlanner() {
+  return (
+    <div>
+      <h1>Week planner page</h1>
+        <TabNavigation />
+    </div>
+  );
 }
+
+export default WeekPlanner;

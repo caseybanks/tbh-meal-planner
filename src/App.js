@@ -1,40 +1,32 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import logo from './assets/tbh-logo.png';
-import './App.css';
-import Navbar from 'react-bootstrap/Navbar';
-import { WeekPlanner } from './pages/WeekPlanner';
-import { HowToUse } from './pages/HowToUse';
-import { Contact } from './pages/Contact';
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
+// Importing the Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navigation } from "./components/Navigation";
+import WeekPlanner from "./pages/WeekPlanner";
+import { HowToUse } from "./pages/HowToUse";
+import { Contact } from "./pages/Contact";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <Navigation />
       </header>
+
       <Router>
         <Switch>
-          <Route path="/">
-            <WeekPlanner />
+          <Route exact path="/contact" component={Contact}>
+            <Contact />
           </Route>
-          <Route path="/howtouse">
+          <Route exact path="/howtouse" component={HowToUse}>
             <HowToUse />
           </Route>
-          <Route path="/contact">
-            <Contact />
+          <Route exact path="/" component={WeekPlanner}>
+            <WeekPlanner />
           </Route>
         </Switch>
       </Router>
-      <a href="/" >
-        Weekly Planner 
-      </a>
-      <a href="/howtouse" >
-        How to Use 
-      </a>
-      <a href="/contact" >
-        Contact 
-      </a>
     </div>
   );
 }
