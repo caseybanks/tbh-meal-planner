@@ -1,11 +1,14 @@
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import { MENU } from "../common/Menu";
 
 import logo from "../assets/tbh-logo.png";
 
 export function Navigation() {
   // const updateActiveKey = (eventKey) => Nav.activeKey(`${eventKey}`);
+
+  const menuItems = Object.values(MENU["menuItems"]);
 
   return (
     <Container fluid>
@@ -19,21 +22,11 @@ export function Navigation() {
           id="responsive-navbar-nav"
         >
           <Nav activeKey="weeklyplanner">
-            <Nav.Item>
-              <Nav.Link eventKey="weekplanner" href="/">
-                Week Planner
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="howtouse" href="/howtouse">
-                How to Use
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="contact" href="/contact">
-                Contact
-              </Nav.Link>
-            </Nav.Item>
+            {menuItems.map((menuItem) => (
+              <Nav.Item key={menuItem.id}>
+                <Nav.Link href={menuItem.href} eventKey={menuItem.eventKey} >{menuItem.label}</Nav.Link>
+              </Nav.Item>
+            ))}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
