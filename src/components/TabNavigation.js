@@ -5,7 +5,6 @@ import { TABS } from "../common/Tabs";
 
 export function TabNavigation() {
   const tabs = Object.values(TABS["tabs"]);
-  console.log(tabs);
 
   return (
     <Container fluid>
