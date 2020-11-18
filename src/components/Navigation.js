@@ -12,7 +12,7 @@ export function Navigation() {
 
   return (
     <Container fluid>
-      <Navbar bg="light" variant="light" expand="md" sticky="top">
+      <Navbar variant="light" expand="md" sticky="top">
         <Navbar.Brand href="/">
           <img src={logo} className="App-logo" alt="The Busy Home Logo" />
         </Navbar.Brand>
