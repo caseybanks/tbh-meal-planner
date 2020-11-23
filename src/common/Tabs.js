@@ -1,49 +1,49 @@
 export const TABS = {
   tabs: [
     {
-      id: 1,
       label: "Planner",
-      eventKey: "planner",
+      key: "planner",
+      tab_category: "planner",
     },
     {
-      id: 2,
       label: "Monday",
-      eventKey: "monday",
+      key: "monday",
+      tab_category: "weekday",
     },
     {
-      id: 3,
       label: "Tuesday",
-      eventKey: "tuesday",
+      key: "tuesday",
+      tab_category: "weekday",
     },
     {
-      id: 4,
       label: "Wednesday",
-      eventKey: "wednesday",
+      key: "wednesday",      
+      tab_category: "weekday",
     },
     {
-      id: 5,
       label: "Thursday",
-      eventKey: "thursday",
+      key: "thursday",
+      tab_category: "weekday",
     },
     {
-      id: 6,
       label: "Friday",
-      eventKey: "friday",
+      key: "friday",
+      tab_category: "weekday",
     },
     {
-      id: 7,
       label: "Saturday",
-      eventKey: "saturday",
+      key: "saturday",
+      tab_category: "weekday",
     },
     {
-      id: 8,
       label: "Sunday",
-      eventKey: "sunday",
+      key: "sunday",
+      tab_category: "weekday",
     },
     {
-      id: 9,
       label: "Shopping List",
-      eventKey: "",
+      key: "shoppinglist",
+      tab_category: "shoppinglist",
     },
   ],
 };
