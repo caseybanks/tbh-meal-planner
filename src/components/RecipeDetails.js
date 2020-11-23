@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { API } from "../common/Api";
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { API } from '../common/Api';
 
 export function RecipeDetails() {
   const { idMeal } = useParams();
@@ -8,9 +8,10 @@ export function RecipeDetails() {
 
   const getRecipe = async () => {
     try {
-      const res = await fetch(API.API_LOOKUP + "?i=" + idMeal);
+      const res = await fetch(API.API_LOOKUP + '?i=' + idMeal);
       const recipe = await res.json();
       setRecipe(recipe.meals);
+      console.log('recipe details', recipe)
     } catch (e) {
       console.error(e);
     }
@@ -24,6 +25,7 @@ export function RecipeDetails() {
 
   return (
     <div>
+      <h1>Recipe Details</h1>
       <img src={recipe.strMealThumb} alt={recipe.strMeal + " recipe"} />
       <div>
         <h2>{recipe.strMeal}</h2>

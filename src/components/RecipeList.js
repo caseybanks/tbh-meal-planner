@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
-import { Recipe } from "./Recipe";
-import { Filter } from "./Filter";
-import { API } from "../common/Api";
+import { useState, useEffect } from 'react';
+import { Recipe } from './Recipe';
+import { Filter } from './Filter';
+import { API } from '../common/Api';
 
 export function RecipeList() {
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState('');
   const [recipies, setRecipies] = useState([]);
 
   const getRecipies = async () => {
     try {
-      const res = await fetch(API.API_SEARCH + "?s=" + filter);
+      const res = await fetch(API.API_SEARCH + '?s=' + filter);
       const recipies = await res.json();
       setRecipies(recipies.meals);
     } catch (e) {

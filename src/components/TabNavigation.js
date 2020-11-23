@@ -1,10 +1,10 @@
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import { TABS } from "../common/Tabs";
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import { TABS } from '../common/Tabs';
 
 export function TabNavigation() {
-  const tabs = Object.values(TABS["tabs"]);
+  const tabs = Object.values(TABS['tabs']);
 
   return (
     <Container fluid>

@@ -1,12 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import reportWebVitals from './tests/reportWebVitals';
+// Importing the Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import WeekPlanner from './WeekPlannerPage';
+import { HowToUse } from './HowToUsePage';
+import { Contact } from './ContactPage';
+// Importing the Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+
+    <div className="App">
+          <Router>
+            <Switch>
+              <Route exact path="/contact" render={() => <Contact />} ></Route>
+              <Route exact path="/howtouse" render={() => <HowToUse />} ></Route>
+              <Route exact path="/" render={() => <WeekPlanner />} ></Route>
+            </Switch>
+          </Router>
+        </div>
+
   </React.StrictMode>,
   document.getElementById('root')
 );

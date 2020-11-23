@@ -1,22 +1,20 @@
 export const MENU = {
   menuItems: [
     {
-      id: 1,
       label: "Week Planner",
       href: "/",
-      eventKey: "",
+      key: "weekplanner",
     },
     {
-      id: 2,
+
       label: "How to Use",
-      href: "howtouse",
-      eventKey: "howtouse",
+      href: "/howtouse",
+      key: "howtouse",
     },
     {
-      id: 3,
       label: "Contact",
-      href: "contact",
-      eventKey: "contact",
+      href: "/contact",
+      key: "contact",
     },
   ],
 };

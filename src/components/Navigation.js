@@ -1,13 +1,11 @@
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import { MENU } from "../common/Menu";
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import { MENU } from '../common/Menu';
+import logo from '../assets/tbh-logo.png';
 
-import logo from "../assets/tbh-logo.png";
 
-export function Navigation() {
-  // const updateActiveKey = (eventKey) => Nav.activeKey(`${eventKey}`);
-
+export function Navigation(props) {
   const menuItems = Object.values(MENU["menuItems"]);
 
   return (
@@ -21,10 +19,15 @@ export function Navigation() {
           className="justify-content-end Nav-Menu"
           id="responsive-navbar-nav"
         >
-          <Nav activeKey="weeklyplanner">
+          <Nav>
             {menuItems.map((menuItem) => (
-              <Nav.Item key={menuItem.id}>
-                <Nav.Link href={menuItem.href} eventKey={menuItem.eventKey} >{menuItem.label}</Nav.Link>
+              <Nav.Item>
+                <Nav.Link
+                  href={menuItem.href}
+                  active={props.activePageKey === menuItem.key ? true : false}
+                >
+                  {menuItem.label}
+                </Nav.Link>
               </Nav.Item>
             ))}
           </Nav>

@@ -10,3 +10,24 @@ body {
 h1 {
   font-family: 'Over the Rainbow';
 }
+
+.App {
+  margin: 2%;
+  text-align: center;
+}
+
+.App-header {
+  padding: 50px;
+}
+
+.App-logo {
+  width: 350px;
+}
+
+.Nav-Menu {
+  margin-right: 10%;
+}
+
+.nav-link.active {
+  color: red !important;
+}
