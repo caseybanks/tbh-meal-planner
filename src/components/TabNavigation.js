@@ -1,33 +1,41 @@
-import { useState } from 'react';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+
+import { TablePlanner } from './TablePlanner';
+import { RecipeList } from './RecipeList';
+import { ShoppingList } from './ShoppingList';
 import { TABS } from '../common/Tabs';
-import WeekPlanner from '../WeekPlannerPage';
+
 
 export function TabNavigation() {
+  const tabs = Object.values(TABS["tabs"]);
 
-  const tabs = Object.values(TABS['tabs']);
-
-  const [ currentTab, setCurrentTab ] = useState('');
-  const handleTabClick = (currentTab) => setCurrentTab(currentTab);
-
-  
-
-
+  function renderTab(category) {
+    switch (category) {
+      case "weekday":
+        return <RecipeList />;
+      case "shoppinglist":
+        return <ShoppingList />;
+      default:
+        return <TablePlanner />;
+    }
+  }
 
   return (
     <Container fluid>
-      <Nav variant="tabs" >
+      <Tabs
+        defaultActiveKey="planner"
+        id="plannertable-tab"
+        unmountOnExit={true}
+      >
         {tabs.map((tab) => (
-          <Nav.Item >
-            <Nav.Link 
-              onClick={ () => handleTabClick(tab.tab_category) }
-            >
-              {tab.label}</Nav.Link>
-          </Nav.Item>
+          <Tab key={tab.key} eventKey={tab.key} title={tab.label}>
+            <h3>{tab.label}</h3>
+            {renderTab(tab.tab_category)}
+          </Tab>
         ))}
-      </Nav>
+      </Tabs>
     </Container>
   );
 }
