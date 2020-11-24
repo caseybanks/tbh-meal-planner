@@ -2,12 +2,12 @@ import { Navigation } from './components/Navigation';
 
 
 export function Contact() {
-    return (
+  return (
     <div>
-        <header className="App-header">
-          <Navigation activePageKey="contact" />
-        </header>
-        <h1>Contact page</h1>
+      <header className="App-header">
+        <Navigation activePageKey="contact" />
+      </header>
+      <h1>Contact page</h1>
     </div>
-    )
+  );
 }

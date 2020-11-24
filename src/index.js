@@ -5,29 +5,25 @@ import reportWebVitals from './reportWebVitals';
 // Importing the Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import WeekPlanner from './WeekPlannerPage';
+import { WeekPlanner } from './WeekPlannerPage';
 import { HowToUse } from './HowToUsePage';
 import { Contact } from './ContactPage';
-// Importing the Bootstrap CSS
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 
 ReactDOM.render(
   <React.StrictMode>
-
     <div className="App">
-          <Router>
-            <Switch>
-              <Route exact path="/contact" render={() => <Contact />} ></Route>
-              <Route exact path="/howtouse" render={() => <HowToUse />} ></Route>
-              <Route exact path="/" render={() => <WeekPlanner />} ></Route>
-            </Switch>
-          </Router>
-        </div>
-
+      <Router>
+        <Switch>
+          <Route exact path="/contact" render={() => <Contact />}></Route>
+          <Route exact path="/howtouse" render={() => <HowToUse />}></Route>
+          <Route exact path="/" render={() => <WeekPlanner />}></Route>
+        </Switch>
+      </Router>
+    </div>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
