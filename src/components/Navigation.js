@@ -5,8 +5,8 @@ import { MENU } from '../common/Menu';
 import logo from '../assets/tbh-logo.png';
 
 
-export function Navigation(props) {
-  const menuItems = Object.values(MENU["menuItems"]);
+export function Navigation() {
+  const menuItems = Object.values(MENU['menuItems']);
 
   return (
     <Container fluid>
@@ -19,13 +19,10 @@ export function Navigation(props) {
           className="justify-content-end Nav-Menu"
           id="responsive-navbar-nav"
         >
-          <Nav>
+          <Nav defaultActiveKey="weekplanner">
             {menuItems.map((menuItem) => (
-              <Nav.Item>
-                <Nav.Link
-                  href={menuItem.href}
-                  active={props.activePageKey === menuItem.key ? true : false}
-                >
+              <Nav.Item key={menuItem.key}>
+                <Nav.Link href={menuItem.href} eventKey={menuItem.key}>
                   {menuItem.label}
                 </Nav.Link>
               </Nav.Item>
