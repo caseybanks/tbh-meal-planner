@@ -9,7 +9,7 @@ export function RecipeList() {
 
   const getRecipies = async () => {
     try {
-      const res = await fetch(API.API_SEARCH + '?s=' + filter);
+      const res = await fetch(API.API_SEARCH + '?f=' + filter);
       const recipies = await res.json();
       setRecipies(recipies.meals);
     } catch (e) {
@@ -19,18 +19,22 @@ export function RecipeList() {
 
   useEffect(() => {
     getRecipies();
-  }, []);
+  });
 
   return (
     <div>
       <Filter filter={filter} setFilter={setFilter} />
-      <ul>
-        {recipies.filter((recipe) =>
-                    recipe.strMeal.toLowerCase().includes(filter.toLowerCase())
-                ).map((recipe) => (
-            <Recipe key={recipe.idMeal} recipe={recipe} />
-          ))}
-      </ul>
+      {filter ? (
+        <ul>
+          {recipies
+            .filter((recipe) =>
+              recipe.strMeal.toLowerCase().includes(filter.toLowerCase())
+            )
+            .map((recipe) => (
+              <Recipe key={recipe.idMeal} recipe={recipe} />
+            ))}
+        </ul>
+      ) : null}
     </div>
   );
 }
