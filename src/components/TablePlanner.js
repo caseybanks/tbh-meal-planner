@@ -46,7 +46,7 @@ export function TablePlanner() {
         <thead>
           <tr>
             {columnLabels.columns.map((label) => (
-              <th>{label.col}</th>
+              <th key={label.col} >{label.col}</th>
             ))}
           </tr>
         </thead>
