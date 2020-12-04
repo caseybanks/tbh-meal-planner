@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+
 
 
 export function Recipe({ recipe }) {
@@ -8,13 +11,13 @@ export function Recipe({ recipe }) {
     const [show, setShow] = useState(false);
 
     return (
-      <div>
+      <div className="recipe-item-container col">
         <Button onClick={() => setShow(true)}>
-          <h5>{recipe.strMeal}</h5>
           <img
             src={recipe.strMealThumb + "/preview"}
             alt={recipe.strMeal + " thumbnail"}
           />
+          <p>{recipe.strMeal}</p>
         </Button>
         <Modal
           recipe={recipe}
@@ -101,6 +104,28 @@ export function Recipe({ recipe }) {
             <a href={recipe.strYoutube}>Link to Youtube Video</a>
           </Modal.Body>
         </Modal>
+        
+        <Form inline
+              className="justify-content-center"
+                onSubmit={(e) => e.preventDefault()}
+        >
+          <Form.Control
+            as="select"
+            className="my-1 mr-sm-2"
+            id="MealChoiceOption"
+            custom
+          >
+            <option value="null">Choose...</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+          </Form.Control>
+          <Button type="submit" className="my-1">
+            Submit
+          </Button>
+        </Form>
+
+
       </div>
     );
 }

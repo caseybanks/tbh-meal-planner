@@ -25,7 +25,7 @@ export function RecipeList() {
     <div>
       <Filter filter={filter} setFilter={setFilter} />
       {filter ? (
-        <ul>
+        <div className="row">
           {recipies
             .filter((recipe) =>
               recipe.strMeal.toLowerCase().includes(filter.toLowerCase())
@@ -33,7 +33,7 @@ export function RecipeList() {
             .map((recipe) => (
               <Recipe key={recipe.idMeal} recipe={recipe} />
             ))}
-        </ul>
+        </div>
       ) : null}
     </div>
   );

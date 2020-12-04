@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  color: var(--gray-dark);
   font-family: -apple-system, BlinkMacSystemFont, 'Open Sans', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -30,4 +31,26 @@ h1 {
 
 .nav-link.active {
   color: red !important;
+}
+
+/* Custom CSS */
+
+@media (min-width: 576px) {
+.modal-dialog {
+  max-width: 90%;
+}
+}
+
+.recipe-item-container {
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-item-container img {
+  width: 10em;
+}
+
+.col {
+  margin: 0.1em;
+  padding: 0;
 }
