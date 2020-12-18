@@ -10,6 +10,10 @@ export function Recipe({ recipe }) {
 
     const [show, setShow] = useState(false);
 
+    const mealTypeOptions = ["breakfast", "lunch","dinner"].map(m => {return {key: m, value: m, text: m}});
+
+    const [selectedRecipe, setSelectedRecipe] =  useState();
+
     return (
       <div className="recipe-item-container col">
         <Button onClick={() => setShow(true)}>
@@ -23,7 +27,7 @@ export function Recipe({ recipe }) {
           recipe={recipe}
           show={show}
           onHide={() => setShow(false)}
-          dialogClassName="modal-90w"
+          // dialogClassName="modal-90w"
           aria-labelledby="example-custom-modal-styling-title"
         >
           <Modal.Header closeButton>
@@ -32,6 +36,27 @@ export function Recipe({ recipe }) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            <Form inline
+                  className="justify-content-center"
+                    onSubmit={(e) => e.preventDefault()}
+            >
+              <Form.Control
+                as="select"
+                className="my-1 mr-sm-2"
+                id="MealChoiceOption"
+                custom
+              >
+                    <option name={mealTypeOptions.key} option={mealTypeOptions.text} value={mealTypeOptions.value} ></option>
+                {/* <option value="null">Choose...</option>
+                <option name="breakfast" value="breakfast">Breakfast</option>
+                <option name="lunch" value="lunch">Lunch</option>
+                <option name="dinner" value="dinner">Dinner</option> */}
+              </Form.Control>
+              <Button type="submit" onSubmit={(value, recipe) => setSelectedRecipe()} className="my-1">
+                Select
+              </Button>
+            </Form>
+
             <img
               src={recipe.strMealThumb + "/preview"}
               alt={recipe.strMeal + " thumbnail"}
@@ -105,27 +130,6 @@ export function Recipe({ recipe }) {
           </Modal.Body>
         </Modal>
         
-        <Form inline
-              className="justify-content-center"
-                onSubmit={(e) => e.preventDefault()}
-        >
-          <Form.Control
-            as="select"
-            className="my-1 mr-sm-2"
-            id="MealChoiceOption"
-            custom
-          >
-            <option value="null">Choose...</option>
-            <option value="breakfast">Breakfast</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-          </Form.Control>
-          <Button type="submit" className="my-1">
-            Submit
-          </Button>
-        </Form>
-
-
       </div>
     );
 }
