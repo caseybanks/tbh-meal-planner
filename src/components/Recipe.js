@@ -2,14 +2,18 @@ import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 
 
 export function Recipe({ recipe }) {
 
     const [show, setShow] = useState(false);
     const mealTypeOptions = ["breakfast", "lunch","dinner"].map(m => {return {key: m, value: m, text: m}});
-    const [selectedRecipe, setSelectedRecipe] =  useState();
+    const selectedRecipe = recipe;
+    const [mealEvent, setMealEvent] = useState();
+
+    const handleChange = (selectedMealEvent) => {
+      setMealEvent(selectedMealEvent);
+    }
 
     return (
       <div className="recipe-item-container col">
@@ -33,30 +37,31 @@ export function Recipe({ recipe }) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form inline
-                  className="justify-content-center"
-                    onSubmit={(e) => e.preventDefault()}
+            <Form
+              inline
+              className="justify-content-center"
+              onSubmit={(e) => {e.preventDefault();}}
             >
               <Form.Control
                 as="select"
                 className="my-1 mr-sm-2"
-                id="MealTypeOption"
+                id="mealEvent"
                 custom
-                options={mealTypeOptions}
+                value={mealTypeOptions.value}
+                onChange={(e) => handleChange(e.target.value)}
                 placeholder="Select meal event"
                 name="mealEvent"
-                value={mealTypeOptions.value}
-                label="MealType"
-                onChange=""
               >
-              {mealTypeOptions.map(
-                (m) => <option>{m.text}</option>
-              )}
-              </Form.Control>              
-              <Button type="submit" onSubmit={(value, recipe) => setSelectedRecipe()} className="my-1">
+                {mealTypeOptions.map((m) => (
+                  <option key={m.key} value={m.value}>
+                    {m.text}
+                  </option>
+                ))}
+              </Form.Control>
+              <Button type="submit" className="my-1">
                 Select
               </Button>
-            </Form>            
+            </Form>
             <img
               src={recipe.strMealThumb + "/preview"}
               alt={recipe.strMeal + " thumbnail"}
@@ -129,7 +134,6 @@ export function Recipe({ recipe }) {
             <a href={recipe.strYoutube}>Link to Youtube Video</a>
           </Modal.Body>
         </Modal>
-        
       </div>
     );
 }
