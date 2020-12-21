@@ -12,7 +12,7 @@ export function Search() {
   const [recipes, setRecipes] = useState([]);
 
   const getRecipies = () => {
-      fetch(API.API_SEARCH + '?f=' + searchString)
+      fetch(API.API_SEARCH + '?s=' + searchString)
       .then(resp => resp.json())
       .then(
         recipes => 
@@ -59,6 +59,7 @@ export function Search() {
         </Button>
       </Form>
       <p>Please enter at least one letter into the search box to return a recipe</p>
+      <p>{searchString}</p>
       <RecipeList recipes={recipes} />
       
     </div>
