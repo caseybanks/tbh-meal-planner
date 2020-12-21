@@ -5,13 +5,10 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 
 
-
 export function Recipe({ recipe }) {
 
     const [show, setShow] = useState(false);
-
     const mealTypeOptions = ["breakfast", "lunch","dinner"].map(m => {return {key: m, value: m, text: m}});
-
     const [selectedRecipe, setSelectedRecipe] =  useState();
 
     return (
@@ -43,20 +40,23 @@ export function Recipe({ recipe }) {
               <Form.Control
                 as="select"
                 className="my-1 mr-sm-2"
-                id="MealChoiceOption"
+                id="MealTypeOption"
                 custom
+                options={mealTypeOptions}
+                placeholder="Select meal event"
+                name="mealEvent"
+                value={mealTypeOptions.value}
+                label="MealType"
+                onChange=""
               >
-                    <option name={mealTypeOptions.key} option={mealTypeOptions.text} value={mealTypeOptions.value} ></option>
-                {/* <option value="null">Choose...</option>
-                <option name="breakfast" value="breakfast">Breakfast</option>
-                <option name="lunch" value="lunch">Lunch</option>
-                <option name="dinner" value="dinner">Dinner</option> */}
-              </Form.Control>
+              {mealTypeOptions.map(
+                (m) => <option>{m.text}</option>
+              )}
+              </Form.Control>              
               <Button type="submit" onSubmit={(value, recipe) => setSelectedRecipe()} className="my-1">
                 Select
               </Button>
-            </Form>
-
+            </Form>            
             <img
               src={recipe.strMealThumb + "/preview"}
               alt={recipe.strMeal + " thumbnail"}
