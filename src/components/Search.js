@@ -8,32 +8,36 @@ import { RecipeList } from './RecipeList';
 
 export function Search() {
 
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = useState("");
   const [recipes, setRecipes] = useState([]);
+  const [resultsMessage, setResultsMessage] = useState("");
 
   const getRecipies = () => {
-      fetch(API.API_SEARCH + '?s=' + searchString)
-      .then(resp => resp.json())
-      .then(
-        recipes => 
-          {
-            console.log(recipes);
-            setRecipes(recipes.meals);
-          }
-        )
-      .catch( err => console.error(err));
+    fetch(API.API_SEARCH + '?s=' + searchString)
+      .then((resp) => resp.json())
+      .then((recipes) => {
+        console.log(recipes);
+        setRecipes(recipes.meals);
+      })
+      .catch((err) => console.error(err));
   };
 
   const onSubmitSeach = (e) => {
-      e.preventDefault();
-      getRecipies(searchString);
-  };
+    e.preventDefault();
+    getRecipies(searchString);
+    if(recipes){
+      return setResultsMessage(<h5>Results for "{searchString}"</h5>)
+    } else {
+      return setResultsMessage('');
+    }
+  };  
 
   const onResetSearch = (e) => {
     e.preventDefault();
     setSearchString('');
-    setRecipes('');
-};
+    setRecipes([]);
+    setResultsMessage('');
+  };
 
   return (
     <div>
@@ -59,9 +63,8 @@ export function Search() {
         </Button>
       </Form>
       <p>Please enter at least one letter into the search box to return a recipe</p>
-      <p>{searchString}</p>
-      <RecipeList recipes={recipes} />
-      
+      {resultsMessage}
+      {(recipes) ? <RecipeList recipes={recipes} />:<h5>There are no results for '{searchString}', please try a different search term.</h5>} 
     </div>
   );
 };
