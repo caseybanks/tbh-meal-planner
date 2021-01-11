@@ -14,7 +14,7 @@ export function Recipe({ recipe }) {
     const [selectedMealEvent, setSelectedMealEvent] = useState('breakfast');
     const [selectedWeekday, setSelectedWeekday] = useState('monday');
     const [selectedRecipe, setSelectedRecipe] = useState(recipe);
-    const [storedMeal, setStoredMeal] = useState({});
+    const [storedMeal, setStoredMeal] = useState([]);
 
     const handleChange = (e) => {
       if(e.currentTarget.id==='mealEvent') setSelectedMealEvent(e.currentTarget.value);
@@ -24,7 +24,7 @@ export function Recipe({ recipe }) {
     const handleSubmit = (e) => {
       e.preventDefault();
 
-      const newMealData = [];
+      const newMealData = {};
       const keys = ['weekday', 'mealEvent', 'recipe'];
       const values = [selectedWeekday, selectedMealEvent, selectedRecipe];
       
@@ -32,7 +32,7 @@ export function Recipe({ recipe }) {
         newMealData[keys[i]] = values[i];
       };
 
-      const mealData = [...storedMeal].concat([newMealData]);
+      const mealData = [...storedMeal].concat(newMealData);
 
       console.log(mealData);
       setStoredMeal(mealData);
