@@ -10,7 +10,7 @@ export function Recipe({ recipe }) {
     const [show, setShow] = useState(false);
     const mealTypeOptions = ['breakfast', 'lunch','dinner'].map(m => {return {key: m, value: m, text: m}});
     const weekdayOptions = ['monday','tuesday','wednesday','thursday', 'friday','saturday','sunday'].map(m => {return {key: m, value: m, text: m}});
-    const [savedPlannerMeals, setSavedPlannerMeals] = useState('');
+    const [savedPlannerMeals, setSavedPlannerMeals] = useState([]);
     const [selectedMealEvent, setSelectedMealEvent] = useState('breakfast');
     const [selectedWeekday, setSelectedWeekday] = useState('monday');
     const [selectedRecipe, setSelectedRecipe] = useState(recipe);
@@ -19,7 +19,14 @@ export function Recipe({ recipe }) {
     const handleChange = (e) => {
       if(e.currentTarget.id==='mealEvent') setSelectedMealEvent(e.currentTarget.value);
       else if(e.currentTarget.id==='weekday') setSelectedWeekday(e.currentTarget.value);
-    }
+    };
+
+    const handleSelect = () => {
+      setShow(true);
+      const meals = JSON.parse(localStorage.getItem('storedMeal'));
+      console.log('getdata',meals );
+      setSavedPlannerMeals(meals);
+    };
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -32,8 +39,7 @@ export function Recipe({ recipe }) {
         newMealData[keys[i]] = values[i];
       };
 
-      const mealData = [...storedMeal].concat(newMealData);
-
+      const mealData = [...savedPlannerMeals].concat(newMealData);
       console.log(mealData);
       setStoredMeal(mealData);
     };
@@ -44,7 +50,7 @@ export function Recipe({ recipe }) {
 
     return (
       <div className="recipe-item-container col">
-        <Button onClick={() => {setShow(true)}}>
+        <Button onClick={handleSelect}>
           <img
             src={recipe.strMealThumb + "/preview"}
             alt={recipe.strMeal + " thumbnail"}
