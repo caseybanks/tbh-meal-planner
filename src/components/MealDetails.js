@@ -115,17 +115,19 @@ export function MealDetails(props) {
                 <h5>
                     Breakfast
                 </h5>
+                {(weekday === activeTab && mealEvent === 'breakfast') ? <RecipeCard recipe={recipe} /> : 'No recipe chosen'}
             </div>
             <div>
                 <h5>
                     Lunch
                 </h5>
+                {(weekday === activeTab && mealEvent === 'lunch') ? <RecipeCard recipe={recipe} /> : 'No recipe chosen'}
             </div>
             <div>
                 <h5>
                     Dinner
                 </h5>                
-                {(weekday === activeTab) ? <RecipeCard recipe={recipe} /> : ''}
+                {(weekday === activeTab && mealEvent === 'dinner') ? <RecipeCard recipe={recipe} /> : 'No recipe chosen'}
             </div>
         </div>
     );
