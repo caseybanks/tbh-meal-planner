@@ -124,7 +124,8 @@ export function MealDetails(props) {
             <div>
                 <h5>
                     Dinner
-                </h5>
+                </h5>                
+                {(weekday === activeTab) ? <RecipeCard recipe={recipe} /> : ''}
             </div>
         </div>
     );
