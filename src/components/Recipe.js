@@ -10,6 +10,7 @@ export function Recipe({ recipe }) {
     const [show, setShow] = useState(false);
     const mealTypeOptions = ['breakfast', 'lunch','dinner'].map(m => {return {key: m, value: m, text: m}});
     const weekdayOptions = ['monday','tuesday','wednesday','thursday', 'friday','saturday','sunday'].map(m => {return {key: m, value: m, text: m}});
+    const [savedPlannerMeals, setSavedPlannerMeals] = useState('');
     const [selectedMealEvent, setSelectedMealEvent] = useState('breakfast');
     const [selectedWeekday, setSelectedWeekday] = useState('monday');
     const [selectedRecipe, setSelectedRecipe] = useState(recipe);
@@ -23,13 +24,16 @@ export function Recipe({ recipe }) {
     const handleSubmit = (e) => {
       e.preventDefault();
 
-      const mealData = {};
+      const newMealData = [];
       const keys = ['weekday', 'mealEvent', 'recipe'];
       const values = [selectedWeekday, selectedMealEvent, selectedRecipe];
       
       for (let i = 0; i < keys.length; i++) {
-        mealData[keys[i]] = values[i];
-      }
+        newMealData[keys[i]] = values[i];
+      };
+
+      const mealData = [...storedMeal].concat([newMealData]);
+
       console.log(mealData);
       setStoredMeal(mealData);
     };
