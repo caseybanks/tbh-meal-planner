@@ -1,23 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { RecipeCard } from './RecipeCard';
 
 
 export function Recipe({ recipe }) {
 
     const [show, setShow] = useState(false);
-    const mealTypeOptions = ["breakfast", "lunch","dinner"].map(m => {return {key: m, value: m, text: m}});
-    const selectedRecipe = recipe;
-    const [mealEvent, setMealEvent] = useState();
+    const mealTypeOptions = ['breakfast', 'lunch','dinner'].map(m => {return {key: m, value: m, text: m}});
+    const weekdayOptions = ['monday','tuesday','wednesday','thursday', 'friday','saturday','sunday'].map(m => {return {key: m, value: m, text: m}});
+    const [selectedMealEvent, setSelectedMealEvent] = useState('breakfast');
+    const [selectedWeekday, setSelectedWeekday] = useState('monday');
+    const [selectedRecipe, setSelectedRecipe] = useState(recipe);
+    const [storedMeal, setStoredMeal] = useState({});
 
-    const handleChange = (selectedMealEvent) => {
-      setMealEvent(selectedMealEvent);
+    const handleChange = (e) => {
+      if(e.currentTarget.id==='mealEvent') setSelectedMealEvent(e.currentTarget.value);
+      else if(e.currentTarget.id==='weekday') setSelectedWeekday(e.currentTarget.value);
     }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+
+      const mealData = {};
+      const keys = ['weekday', 'mealEvent', 'recipe'];
+      const values = [selectedWeekday, selectedMealEvent, selectedRecipe];
+      
+      for (let i = 0; i < keys.length; i++) {
+        mealData[keys[i]] = values[i];
+      }
+      console.log(mealData);
+      setStoredMeal(mealData);
+    };
+
+    useEffect(() => {
+      localStorage.setItem('storedMeal', JSON.stringify(storedMeal));
+    }, [storedMeal]);
 
     return (
       <div className="recipe-item-container col">
-        <Button onClick={() => setShow(true)}>
+        <Button onClick={() => {setShow(true)}}>
           <img
             src={recipe.strMealThumb + "/preview"}
             alt={recipe.strMeal + " thumbnail"}
@@ -40,15 +63,32 @@ export function Recipe({ recipe }) {
             <Form
               inline
               className="justify-content-center"
-              onSubmit={(e) => {e.preventDefault();}}
+              onSubmit={handleSubmit}
             >
+              <Form.Control
+                as="select"
+                className="my-1 mr-sm-2"
+                id="weekday"
+                custom
+                value={weekdayOptions.value}
+                onChange={handleChange}
+                placeholder="Select day of the week"
+                name="weekday"
+              >
+                {weekdayOptions.map((d) => (
+                  <option key={d.key} value={d.value}>
+                    {d.text}
+                  </option>
+                ))}
+              </Form.Control>
               <Form.Control
                 as="select"
                 className="my-1 mr-sm-2"
                 id="mealEvent"
                 custom
                 value={mealTypeOptions.value}
-                onChange={(e) => handleChange(e.target.value)}
+                onChange={handleChange}
+                // onChange={(e) => handleChange(e.target.value)}
                 placeholder="Select meal event"
                 name="mealEvent"
               >
@@ -62,76 +102,8 @@ export function Recipe({ recipe }) {
                 Select
               </Button>
             </Form>
-            <img
-              src={recipe.strMealThumb + "/preview"}
-              alt={recipe.strMeal + " thumbnail"}
-            />
-            <ul>
-              {recipe.strIngredient1 ? (
-                <li>{`${recipe.strMeasure1} ${recipe.strIngredient1}`}</li>
-              ) : null}
-              {recipe.strIngredient2 ? (
-                <li>{`${recipe.strMeasure2} ${recipe.strIngredient2}`}</li>
-              ) : null}
-              {recipe.strIngredient3 ? (
-                <li>{`${recipe.strMeasure3} ${recipe.strIngredient3}`}</li>
-              ) : null}
-              {recipe.strIngredient4 ? (
-                <li>{`${recipe.strMeasure4} ${recipe.strIngredient4}`}</li>
-              ) : null}
-              {recipe.strIngredient5 ? (
-                <li>{`${recipe.strMeasure5} ${recipe.strIngredient5}`}</li>
-              ) : null}
-              {recipe.strIngredient6 ? (
-                <li>{`${recipe.strMeasure6} ${recipe.strIngredient6}`}</li>
-              ) : null}
-              {recipe.strIngredient7 ? (
-                <li>{`${recipe.strMeasure7} ${recipe.strIngredient7}`}</li>
-              ) : null}
-              {recipe.strIngredient8 ? (
-                <li>{`${recipe.strMeasure8} ${recipe.strIngredient8}`}</li>
-              ) : null}
-              {recipe.strIngredient9 ? (
-                <li>{`${recipe.strMeasure9} ${recipe.strIngredient9}`}</li>
-              ) : null}
-              {recipe.strIngredient10 ? (
-                <li>{`${recipe.strMeasure10} ${recipe.strIngredient10}`}</li>
-              ) : null}
-              {recipe.strIngredient11 ? (
-                <li>{`${recipe.strMeasure11} ${recipe.strIngredient11}`}</li>
-              ) : null}
-              {recipe.strIngredient12 ? (
-                <li>{`${recipe.strMeasure12} ${recipe.strIngredient12}`}</li>
-              ) : null}
-              {recipe.strIngredient13 ? (
-                <li>{`${recipe.strMeasure13} ${recipe.strIngredient13}`}</li>
-              ) : null}
-              {recipe.strIngredient14 ? (
-                <li>{`${recipe.strMeasure14} ${recipe.strIngredient14}`}</li>
-              ) : null}
-              {recipe.strIngredient15 ? (
-                <li>{`${recipe.strMeasure15} ${recipe.strIngredient15}`}</li>
-              ) : null}
-              {recipe.strIngredient16 ? (
-                <li>{`${recipe.strMeasure16} ${recipe.strIngredient16}`}</li>
-              ) : null}
-              {recipe.strIngredient17 ? (
-                <li>{`${recipe.strMeasure17} ${recipe.strIngredient17}`}</li>
-              ) : null}
-              {recipe.strIngredient18 ? (
-                <li>{`${recipe.strMeasure18} ${recipe.strIngredient18}`}</li>
-              ) : null}
-              {recipe.strIngredient19 ? (
-                <li>{`${recipe.strMeasure19} ${recipe.strIngredient19}`}</li>
-              ) : null}
-              {recipe.strIngredient20 ? (
-                <li>{`${recipe.strMeasure20} ${recipe.strIngredient20}`}</li>
-              ) : null}
-            </ul>
-            <h4>{recipe.strCategory}</h4>
-            <h5>{recipe.strArea}</h5>
-            <p>{recipe.strInstructions}</p>
-            <a href={recipe.strYoutube}>Link to Youtube Video</a>
+              <p>{selectedWeekday} {selectedMealEvent}</p>
+              <RecipeCard recipe={recipe}/>            
           </Modal.Body>
         </Modal>
       </div>
