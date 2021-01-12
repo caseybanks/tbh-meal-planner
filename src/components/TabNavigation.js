@@ -19,8 +19,8 @@ export function TabNavigation() {
         return <ShoppingList />;
       default:
         return <TablePlanner recipeItem={undefined} />;
-    }
-  }
+    };
+  };
 
   return (
     <Container fluid>
@@ -38,4 +38,4 @@ export function TabNavigation() {
       </Tabs>
     </Container>
   );
-}
+};
