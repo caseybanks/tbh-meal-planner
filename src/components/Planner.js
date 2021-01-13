@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { RecipeSearch } from './RecipeSearch';
 import { RecipeCard } from './RecipeCard';
 
-export function MealDetails(props) {
+export function Planner(props) {
 
     const activeTab = props.tab.key;
     const [show, setShow] = useState(false);
@@ -35,18 +35,10 @@ export function MealDetails(props) {
     return (
         <div>
             <div>
-                <Button
-                    onClick={() => setShow(true)}
-                    variant="danger"
-                    >
-                        Search for Recipes
+                <Button onClick={() => setShow(true)} variant="danger" >
+                    Search for Recipes
                 </Button>
-                <Modal
-                    show={show}
-                    onHide={() => setShow(false)}
-                    // dialogClassName="modal-90w"
-                    aria-labelledby="example-custom-modal-styling-title"
-                >
+                <Modal show={show} onHide={() => setShow(false)} animation={false} aria-labelledby="example-custom-modal-styling-title" >
                     <Modal.Header closeButton>
                         <h2>Search for a Recipe</h2>                        
                     </Modal.Header>

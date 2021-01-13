@@ -3,7 +3,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
 import { TablePlanner } from './TablePlanner';
-import { MealDetails } from './MealDetails';
+import { Planner } from './Planner';
 import { ShoppingList } from './ShoppingList';
 import { TABS } from '../common/Tabs';
 
@@ -14,7 +14,7 @@ export function TabNavigation() {
   function renderTab(tab) {
     switch (tab.tab_category) {
       case "weekday":
-        return <MealDetails tab={tab}/>;
+        return <Planner tab={tab}/>;
       case "shoppinglist":
         return <ShoppingList />;
       default:
