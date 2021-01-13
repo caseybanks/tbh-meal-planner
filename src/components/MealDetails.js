@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Search } from './Search';
+import { RecipeSearch } from './RecipeSearch';
 import { RecipeCard } from './RecipeCard';
 
 export function MealDetails(props) {
@@ -51,7 +51,7 @@ export function MealDetails(props) {
                         <h2>Search for a Recipe</h2>                        
                     </Modal.Header>
                     <Modal.Body>
-                        <Search savedPlannerMeals={savedPlannerMeals} />
+                        <RecipeSearch savedPlannerMeals={savedPlannerMeals} />
                     </Modal.Body>
                 </Modal>
             </div>

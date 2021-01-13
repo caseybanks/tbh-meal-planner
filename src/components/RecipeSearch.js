@@ -6,7 +6,7 @@ import { API } from '../common/Api';
 import { RecipeCard } from './RecipeCard';
 
 
-export function Search(props) {
+export function RecipeSearch(props) {
 
   const [searchString, setSearchString] = useState("");
   const [recipes, setRecipes] = useState([]);
@@ -169,7 +169,7 @@ export function Search(props) {
   );
 };
 
-Search.propTypes = {
+RecipeSearch.propTypes = {
   searchString: PropTypes.string,
   setSearchString: PropTypes.func,
 };
