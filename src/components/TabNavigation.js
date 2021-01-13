@@ -28,6 +28,7 @@ export function TabNavigation() {
         defaultActiveKey="planner"
         id="plannertable-tab"
         unmountOnExit={true}
+        transition={false}
       >
         {tabs.map((tab) => (
           <Tab key={tab.key} eventKey={tab.key} title={tab.label}>
