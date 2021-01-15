@@ -4,22 +4,25 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { API } from '../common/Api';
 import { RecipeCard } from './RecipeCard';
+import { useStoredRecipes } from './useStoredRecipes';
 
 
-export function RecipeSearch(props) {
+export function RecipeSearch() {
 
   const [searchString, setSearchString] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [resultsMessage, setResultsMessage] = useState("");
   const [isSearchHidden, setIsSearchHidden] = useState(false);
   const [isRecipeButtonHidden, setIsRecipeButtonHidden] = useState(false);
-  const [hideRecipeDetails, setHideRecipeDetails] = useState(true);
+  const [isRecipeDetailsHidden, setIsRecipeDetailsHidden] = useState(true);
   const mealTypeOptions = ['breakfast', 'lunch','dinner'].map(m => {return {key: m, value: m, text: m}});
   const weekdayOptions = ['monday','tuesday','wednesday','thursday', 'friday','saturday','sunday'].map(m => {return {key: m, value: m, text: m}});
   const [selectedMealEvent, setSelectedMealEvent] = useState('breakfast');
   const [selectedWeekday, setSelectedWeekday] = useState('monday');
   const [selectedRecipe, setSelectedRecipe] = useState({});
   const [storedMeal, setStoredMeal] = useState([]);
+  const storedRecipeChoices = useStoredRecipes();
+  console.log('storedRecipeChoices: ', storedRecipeChoices);
 
   //API call to Get recipes from https://www.themealdb.com
   const getRecipies = () => {
@@ -30,6 +33,12 @@ export function RecipeSearch(props) {
         setRecipes(recipes.meals);
       })
       .catch((err) => console.error(err));
+  };
+
+  //Set search term for search form
+  const handleChange = (e) => {
+    if(e.currentTarget.id==='mealEvent') setSelectedMealEvent(e.currentTarget.value);
+    else if(e.currentTarget.id==='weekday') setSelectedWeekday(e.currentTarget.value);
   };
 
   //Search form submit
@@ -48,25 +57,17 @@ export function RecipeSearch(props) {
   const onResetSearch = (e) => {    
     e.preventDefault();
     setIsSearchHidden(false);
-    setHideRecipeDetails(true);
+    setIsRecipeDetailsHidden(true);
     setSearchString('');
     setRecipes([]);
     setResultsMessage('');
   };
 
-  //Set search term for search form
-  const handleChange = (e) => {
-    if(e.currentTarget.id==='mealEvent') setSelectedMealEvent(e.currentTarget.value);
-    else if(e.currentTarget.id==='weekday') setSelectedWeekday(e.currentTarget.value);
-  };
-
   //Handle selected recipe from search results
-  const handleSelect = (e) => { 
-    setHideRecipeDetails(false);
+  const handleSelect = () => { 
+    setIsRecipeDetailsHidden(false);
     setIsRecipeButtonHidden(true);
     setIsSearchHidden(true);
-    setHideRecipeDetails(false);
-
   };
 
   //Set selected mealEvent and weekday options with selectedRecipe
@@ -79,7 +80,7 @@ export function RecipeSearch(props) {
       newMealData[keys[i]] = values[i];
     };
 
-    const mealData = [...props.savedPlannerMeals].concat(newMealData);
+    const mealData = [...storedRecipeChoices].concat(newMealData);
     console.log('newMealData: ', mealData);
     setStoredMeal(mealData);
   };
@@ -131,7 +132,7 @@ export function RecipeSearch(props) {
           </div>
         ):<h5>There are no results for '{searchString}', please try a different search term.</h5>}      
 
-      <div hidden={hideRecipeDetails}>
+      <div hidden={isRecipeDetailsHidden}>
         <Button variant="danger" onClick={onResetSearch}>
               Search again
         </Button>

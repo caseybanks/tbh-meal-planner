@@ -3,33 +3,28 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { RecipeSearch } from './RecipeSearch';
 import { RecipeCard } from './RecipeCard';
+import { useStoredRecipes } from './useStoredRecipes';
 
 export function Planner(props) {
 
     const activeTab = props.tab.key;
     const [show, setShow] = useState(false);
     const [savedPlannerMeals, setSavedPlannerMeals] = useState([]);
+    const storedRecipeChoices = useStoredRecipes();
     const [weekday, setWeekday] = useState('');
     const [mealEvent, setMealEvent] = useState('');
     const [recipe, setRecipe] = useState({});
 
-    const getSavedPlannerMeals = () => {
-        try {
-            const mealsData = JSON.parse(localStorage.getItem('storedMeal'));
-            console.log('getMealsData',mealsData );
-            setSavedPlannerMeals(mealsData);
-            setWeekday(mealsData['weekday']);
-            setMealEvent(mealsData['mealEvent']);
-            setRecipe(mealsData['recipe']);
-        } catch(err) {
-            console.error(err);
-        };
-    };
-    
     useEffect(
     () => {
-        getSavedPlannerMeals();
-    }, [props.tab]
+        setSavedPlannerMeals(storedRecipeChoices);        
+        //NOTE need to add mapping here for storedRecipeChoices
+        if(storedRecipeChoices.length > 0){
+            setWeekday(storedRecipeChoices[0]['weekday']);
+            setMealEvent(storedRecipeChoices[0]['mealEvent']);
+            setRecipe(storedRecipeChoices[0]['recipe']);
+        };       
+    }, [props.tab, storedRecipeChoices]
     );
 
     return (
