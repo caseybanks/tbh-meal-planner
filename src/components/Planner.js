@@ -17,14 +17,8 @@ export function Planner(props) {
 
     useEffect(
     () => {
-        setSavedPlannerMeals(storedRecipeChoices);        
-        //NOTE need to add mapping here for storedRecipeChoices
-        if(storedRecipeChoices.length > 0){
-            setWeekday(storedRecipeChoices[0]['weekday']);
-            setMealEvent(storedRecipeChoices[0]['mealEvent']);
-            setRecipe(storedRecipeChoices[0]['recipe']);
-        };       
-    }, [props.tab, storedRecipeChoices]
+        setSavedPlannerMeals(storedRecipeChoices); 
+        }, [props.tab, savedPlannerMeals]
     );
 
     return (
@@ -42,23 +36,40 @@ export function Planner(props) {
                     </Modal.Body>
                 </Modal>
             </div>
-            <div>
-                <h5>
-                    Breakfast
-                </h5>
-                {(weekday === activeTab && mealEvent === 'breakfast') ? <RecipeCard recipe={recipe} /> : 'No recipe chosen'}
-            </div>
-            <div>
-                <h5>
-                    Lunch
-                </h5>
-                {(weekday === activeTab && mealEvent === 'lunch') ? <RecipeCard recipe={recipe} /> : 'No recipe chosen'}
-            </div>
-            <div>
-                <h5>
-                    Dinner
-                </h5>                
-                {(weekday === activeTab && mealEvent === 'dinner') ? <RecipeCard recipe={recipe} /> : 'No recipe chosen'}
+
+            <div>                
+            {savedPlannerMeals.map(
+                (r) => {
+                    return(
+                        <div>
+                            <div>                                
+                                {(r.weekday === activeTab && r.mealEvent === 'breakfast') ? 
+                                    (<div>
+                                        <h1 style={{color:"red"}}>{r.mealEvent}</h1>
+                                        <RecipeCard recipe={r.recipe} />
+                                    </div>)
+                                    : 'No recipe chosen'}
+                            </div>
+                            <div>
+                                {(r.weekday === activeTab && r.mealEvent === 'lunch') ? 
+                                    (<div>
+                                        <h1 style={{color:"red"}}>{r.mealEvent}</h1>
+                                        <RecipeCard recipe={r.recipe} />
+                                    </div>)
+                                : 'No recipe chosen'}
+                            </div>
+                            <div>
+                                {(r.weekday === activeTab && r.mealEvent === 'dinner') ?
+                                    (<div>
+                                        <h1 style={{color:"red"}}>{r.mealEvent}</h1>
+                                        <RecipeCard recipe={r.recipe} />
+                                    </div>)
+                                : 'No recipe chosen'}
+                            </div>
+                        </div>
+                        );
+                    }
+            )}
             </div>
         </div>
     );
