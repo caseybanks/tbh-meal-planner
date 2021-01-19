@@ -4,11 +4,12 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { API } from '../common/Api';
 import { RecipeCard } from './RecipeCard';
-import { useStoredRecipes } from './useStoredRecipes';
+import { usePlannerStore } from './usePlannerStore';
 
 
-export function RecipeSearch() {
+export function RecipeSearch(props) {
 
+  const activeTab = props.activeTab;
   const [searchString, setSearchString] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [resultsMessage, setResultsMessage] = useState("");
@@ -16,13 +17,20 @@ export function RecipeSearch() {
   const [isRecipeButtonHidden, setIsRecipeButtonHidden] = useState(false);
   const [isRecipeDetailsHidden, setIsRecipeDetailsHidden] = useState(true);
   const mealTypeOptions = ['breakfast', 'lunch','dinner'].map(m => {return {key: m, value: m, text: m}});
-  const weekdayOptions = ['monday','tuesday','wednesday','thursday', 'friday','saturday','sunday'].map(m => {return {key: m, value: m, text: m}});
   const [selectedMealEvent, setSelectedMealEvent] = useState('breakfast');
-  const [selectedWeekday, setSelectedWeekday] = useState('monday');
   const [selectedRecipe, setSelectedRecipe] = useState({});
-  const [storedMeal, setStoredMeal] = useState([]);
-  const storedRecipeChoices = useStoredRecipes();
-  console.log('storedRecipeChoices: ', storedRecipeChoices);
+  const storedPlannerData = JSON.parse(localStorage.getItem('storedMeal'));
+  console.log('storedMealPlan: ', storedPlannerData);
+  const [storedMeal, setStoredMeal] = useState(() => {
+    if(activeTab === 'monday') return storedPlannerData['mondayBreakfast'];
+    if(activeTab === 'tuesday') return storedPlannerData['tuesdayBreakfast'];
+    if(activeTab === 'wednesday') return storedPlannerData['wednesdayBreakfast'];
+    if(activeTab === 'thursday') return storedPlannerData['thursdayBreakfast'];
+    if(activeTab === 'friday') return storedPlannerData['fridayBreakfast'];
+    if(activeTab === 'saturday') return storedPlannerData['saturdayBreakfast'];
+    if(activeTab === 'sunday') return storedPlannerData['sundayBreakfast'];
+  });
+  const plannerChoices = usePlannerStore({weekday: activeTab, mealEvent: selectedMealEvent, plannerChoice:storedMeal});
 
   //API call to Get recipes from https://www.themealdb.com
   const getRecipies = () => {
@@ -38,7 +46,6 @@ export function RecipeSearch() {
   //Set search term for search form
   const handleChange = (e) => {
     if(e.currentTarget.id==='mealEvent') setSelectedMealEvent(e.currentTarget.value);
-    else if(e.currentTarget.id==='weekday') setSelectedWeekday(e.currentTarget.value);
   };
 
   //Search form submit
@@ -74,21 +81,14 @@ export function RecipeSearch() {
   const handleSubmit = (e) => {
     const newMealData = {};
     const keys = ['weekday', 'mealEvent', 'recipe'];
-    const values = [selectedWeekday, selectedMealEvent, selectedRecipe];
+    const values = [props.activeTab, selectedMealEvent, selectedRecipe];
     
     for (let i = 0; i < keys.length; i++) {
       newMealData[keys[i]] = values[i];
     };
 
-    const mealData = [...storedRecipeChoices].concat(newMealData);
-    console.log('newMealData: ', mealData);
-    setStoredMeal(mealData);
+    setStoredMeal(newMealData);
   };
-
-  //Will store a list of meals data every time the value of storedMeal changes
-  useEffect(() => {
-    localStorage.setItem('storedMeal', JSON.stringify(storedMeal));
-  }, [storedMeal]);
 
   return (
     <div>
@@ -138,17 +138,12 @@ export function RecipeSearch() {
         </Button>
         <Form inline className="justify-content-center" onSubmit={handleSubmit} >
           <Form.Control
-            as="select"
+            as="input"
             className="my-1 mr-sm-2"
-            id="weekday"
-            custom
-            value={weekdayOptions.value}
+            value={activeTab}
             onChange={handleChange}
-            placeholder="Select day of the week"
             name="weekday"
-          >
-            {weekdayOptions.map((d) => (<option key={d.key} value={d.value}>{d.text}</option>))}
-          </Form.Control>
+          />
           <Form.Control
             as="select"
             className="my-1 mr-sm-2"
