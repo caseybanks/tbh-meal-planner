@@ -1,23 +1,24 @@
 import { useState, useEffect } from 'react';
+import { plannerChoices } from './PlannerChoices';
 
 export function useStoredRecipes() {
 
     const [savedPlannerMeals, setSavedPlannerMeals] = useState([]);
 
     function getSavedPlannerMeals() {
-        try {
-            const mealsData = JSON.parse(localStorage.getItem('storedMeal'));
+        try {            
+            // localStorage.removeItem("storedMeal");
+            const mealsData = JSON.parse(localStorage.getItem('storedMeal')) || plannerChoices;
             console.log('getMealsData in useStoredRecipes',mealsData );
-            setSavedPlannerMeals(mealsData);
+            setSavedPlannerMeals(mealsData);            
         } catch(err) {
             console.error(err);
         };
     };
 
-    useEffect(
-        () => {getSavedPlannerMeals();},
-        []
-    );
+    useEffect(() => {
+        getSavedPlannerMeals();
+    },[]);
 
     return savedPlannerMeals;
 };
