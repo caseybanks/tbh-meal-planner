@@ -5,6 +5,7 @@ export const RecipeCard = ({recipe}) => {
               src={recipe.strMealThumb + "/preview"}
               alt={recipe.strMeal + " thumbnail"}
             />
+            <h3>{recipe.strMeal}</h3>
             <ul>
               {recipe.strIngredient1 ? (
                 <li>{`${recipe.strMeasure1} ${recipe.strIngredient1}`}</li>
