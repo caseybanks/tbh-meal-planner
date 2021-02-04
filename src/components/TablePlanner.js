@@ -7,7 +7,7 @@ export function TablePlanner(props) {
   const savedPlannerMeals = props.savedPlannerMeals;
   const columnLabels = { 
     columns: [
-      {col: 'Meal'}, 
+      {col: ''}, 
       {col: 'Monday'}, 
       {col: 'Tuesday'}, 
       {col: 'Wednesday'}, 

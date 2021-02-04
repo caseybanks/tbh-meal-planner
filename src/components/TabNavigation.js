@@ -43,7 +43,9 @@ export function TabNavigation() {
       >
         {tabs.map((tab) => (
           <Tab key={tab.key} eventKey={tab.key} title={tab.label}>
-            <h3>{tab.heading}</h3>
+            <div className="tab-header" >
+              <h3>{tab.heading}</h3>
+            </div>
             {renderTab(tab)}
           </Tab>
         ))}
