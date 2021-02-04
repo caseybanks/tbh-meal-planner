@@ -3,7 +3,7 @@ import { plannerChoices } from './PlannerChoices';
 
 export function useStoredRecipes() {
 
-    const [savedPlannerMeals, setSavedPlannerMeals] = useState([]);
+    const [savedPlannerMeals, setSavedPlannerMeals] = useState(plannerChoices);
 
     function getSavedPlannerMeals() {
         try {            
