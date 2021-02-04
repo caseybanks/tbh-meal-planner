@@ -1,6 +1,6 @@
 export const RecipeCard = ({recipe}) => {
     return (
-        <div >
+        <div className="recipe-card-container">
             <img
               src={recipe.strMealThumb + "/preview"}
               alt={recipe.strMeal + " thumbnail"}

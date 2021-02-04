@@ -60,8 +60,8 @@ export function Planner(props) {
     return (
       <div>
         <div>
-          <Button onClick={() => setShow(true)} variant="danger">
-            Search for Recipes
+          <Button className="search-button" onClick={() => setShow(true)} variant="warning">
+            Search for {props.tab.label}'s Recipes
           </Button>
           <Modal
             show={show}
@@ -81,7 +81,7 @@ export function Planner(props) {
           </Modal>
         </div>
         {activeTab === "monday" && (
-          <div>
+          <div className="planner-container" >
             <div>
               <h2>Breakfast</h2>
               <RecipeCard recipe={mondayBreakfast}></RecipeCard>
@@ -97,7 +97,7 @@ export function Planner(props) {
           </div>
         )}
         {activeTab === "tuesday" && (
-          <div>
+          <div className="planner-container" >
             <div>
               <h2>Breakfast</h2>
               <RecipeCard recipe={tuesdayBreakfast}></RecipeCard>
@@ -113,7 +113,7 @@ export function Planner(props) {
           </div>
         )}
         {activeTab === "wednesday" && (
-          <div>
+          <div className="planner-container" >
             <div>
               <h2>Breakfast</h2>
               <RecipeCard recipe={wednesdayBreakfast}></RecipeCard>
@@ -129,7 +129,7 @@ export function Planner(props) {
           </div>
         )}
         {activeTab === "thursday" && (
-          <div>
+          <div className="planner-container" >
             <div>
               <h2>Breakfast</h2>
               <RecipeCard recipe={thursdayBreakfast}></RecipeCard>
@@ -145,7 +145,7 @@ export function Planner(props) {
           </div>
         )}
         {activeTab === "friday" && (
-          <div>
+          <div className="planner-container" >
             <div>
               <h2>Breakfast</h2>
               <RecipeCard recipe={fridayBreakfast}></RecipeCard>
@@ -161,7 +161,7 @@ export function Planner(props) {
           </div>
         )}
         {activeTab === "saturday" && (
-          <div>
+          <div className="planner-container" >
             <div>
               <h2>Breakfast</h2>
               <RecipeCard recipe={saturdayBreakfast}></RecipeCard>
@@ -177,7 +177,7 @@ export function Planner(props) {
           </div>
         )}
         {activeTab === "sunday" && (
-          <div>
+          <div className="planner-container" >
             <div>
               <h2>Breakfast</h2>
               <RecipeCard recipe={sundayBreakfast}></RecipeCard>
