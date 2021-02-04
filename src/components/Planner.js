@@ -3,14 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { RecipeSearch } from './RecipeSearch';
 import { RecipeCard } from './RecipeCard';
-import { useStoredRecipes } from './useStoredRecipes';
 import { plannerChoices } from './PlannerChoices';
 
 export function Planner(props) {
     const activeTab = props.tab.key;
+    const savedPlannerMeals = props.savedPlannerMeals;
     const [show, setShow] = useState(false);
-    const storedRecipeChoices = useStoredRecipes();
-    const [savedPlannerMeals, setSavedPlannerMeals] = useState(plannerChoices);
     const [mondayBreakfast, setMondayBreakfast] = useState(plannerChoices['mondayBreakfast']['recipe']);
     const [mondayLunch, setMondayLunch] = useState(plannerChoices['mondayLunch']['recipe']);
     const [mondayDinner, setMondayDinner] = useState(plannerChoices['mondayDinner']['recipe']);
@@ -32,12 +30,6 @@ export function Planner(props) {
     const [sundayBreakfast, setSundayBreakfast] = useState(plannerChoices['sundayBreakfast']['recipe']);
     const [sundayLunch, setSundayLunch] = useState(plannerChoices['sundayLunch']['recipe']);
     const [sundayDinner, setSundayDinner] = useState(plannerChoices['sundayDinner']['recipe']);
-
-    useEffect(
-        () => {
-            setSavedPlannerMeals(storedRecipeChoices);
-        }, [props.tab, storedRecipeChoices]
-    );
     
     useEffect(
         () => {
