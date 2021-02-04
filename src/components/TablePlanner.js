@@ -69,7 +69,6 @@ export function TablePlanner(props) {
 
   return (
     <div>
-      <h1>Table Planner</h1>
       <Table striped bordered hover>
         <thead>
           <tr>
