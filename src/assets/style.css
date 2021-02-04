@@ -1,0 +1,21 @@
+/* Custom CSS */
+
+@media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 90%;
+    }
+}
+    
+.recipe-item-container {
+    margin: 0;
+    padding: 0;
+}
+
+.recipe-item-container img {
+    width: 10em;
+}
+
+.col {
+    margin: 0.1em;
+    padding: 0;
+}

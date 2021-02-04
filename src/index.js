@@ -8,8 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { WeekPlanner } from './WeekPlannerPage';
 import { HowToUse } from './HowToUsePage';
 import { Contact } from './ContactPage';
-import './index.css';
-
+import './assets/index.css';
+import './assets/style.css';
 
 ReactDOM.render(
   <React.StrictMode>
