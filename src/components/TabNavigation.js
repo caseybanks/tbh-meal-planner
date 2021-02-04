@@ -23,7 +23,7 @@ export function TabNavigation() {
       case "shoppinglist":
         return <ShoppingList />;
       default:
-        return <TablePlanner recipeItem={undefined} savedPlannerMeals={savedPlannerMeals}/>;
+        return <TablePlanner savedPlannerMeals={savedPlannerMeals}/>;
     };
   };
 

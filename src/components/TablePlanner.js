@@ -3,8 +3,8 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 
-export function TablePlanner() {
-
+export function TablePlanner(props) {
+  const savedPlannerMeals = props.savedPlannerMeals;
   const columnLabels = { 
     columns: [
       {col: 'Meal'}, 
@@ -16,12 +16,40 @@ export function TablePlanner() {
       {col: 'Saturday'}, 
       {col: 'Sunday'},
     ],};
-  const mealEvent = { 
+  const mealEvent = {
     rows: [
-      {row: 'Breakfast', data1: '#', data2: '#', data3: '#', data4: '#', data5: '#', data6: '#', data7: '#' }, 
-      {row: 'Lunch', data1: '#', data2: '#', data3: '#', data4: '#', data5: '#', data6: '#', data7: '#' }, 
-      {row: 'Dinner', data1: '#', data2: '#', data3: '#', data4: '#', data5: '#', data6: '#', data7: '#' },
-    ],};
+      {
+        row: "Breakfast",
+        data1: savedPlannerMeals["mondayBreakfast"]["recipe"]["strMeal"],
+        data2: savedPlannerMeals["tuesdayBreakfast"]["recipe"]["strMeal"],
+        data3: savedPlannerMeals["wednesdayBreakfast"]["recipe"]["strMeal"],
+        data4: savedPlannerMeals["thursdayBreakfast"]["recipe"]["strMeal"],
+        data5: savedPlannerMeals["fridayBreakfast"]["recipe"]["strMeal"],
+        data6: savedPlannerMeals["saturdayBreakfast"]["recipe"]["strMeal"],
+        data7: savedPlannerMeals["sundayBreakfast"]["recipe"]["strMeal"],
+      },
+      {
+        row: "Lunch",
+        data1: savedPlannerMeals["mondayLunch"]["recipe"]["strMeal"],
+        data2: savedPlannerMeals["tuesdayLunch"]["recipe"]["strMeal"],
+        data3: savedPlannerMeals["wednesdayLunch"]["recipe"]["strMeal"],
+        data4: savedPlannerMeals["thursdayLunch"]["recipe"]["strMeal"],
+        data5: savedPlannerMeals["fridayLunch"]["recipe"]["strMeal"],
+        data6: savedPlannerMeals["saturdayLunch"]["recipe"]["strMeal"],
+        data7: savedPlannerMeals["sundayLunch"]["recipe"]["strMeal"],
+      },
+      {
+        row: "Dinner",
+        data1: savedPlannerMeals["mondayDinner"]["recipe"]["strMeal"],
+        data2: savedPlannerMeals["tuesdayDinner"]["recipe"]["strMeal"],
+        data3: savedPlannerMeals["wednesdayDinner"]["recipe"]["strMeal"],
+        data4: savedPlannerMeals["thursdayDinner"]["recipe"]["strMeal"],
+        data5: savedPlannerMeals["fridayDinner"]["recipe"]["strMeal"],
+        data6: savedPlannerMeals["saturdayDinner"]["recipe"]["strMeal"],
+        data7: savedPlannerMeals["sundayDinner"]["recipe"]["strMeal"],
+      },
+    ],
+  };
 
   function simulateNetworkRequest() {
     return new Promise((resolve) => setTimeout(resolve, 2000));
