@@ -90,51 +90,114 @@ export function Planner(props) {
         </div>
         {activeTab === "monday" && (
           <div>
-            <RecipeCard recipe={mondayBreakfast}></RecipeCard>
-            <RecipeCard recipe={mondayLunch}></RecipeCard>
-            <RecipeCard recipe={mondayDinner}></RecipeCard>
+            <div>
+              <h2>Breakfast</h2>
+              <RecipeCard recipe={mondayBreakfast}></RecipeCard>
+            </div>
+            <div>
+              <h2>Lunch</h2>
+              <RecipeCard recipe={mondayLunch}></RecipeCard>
+            </div>
+            <div>
+              <h2>Dinner</h2>
+              <RecipeCard recipe={mondayDinner}></RecipeCard>
+            </div>
           </div>
         )}
         {activeTab === "tuesday" && (
           <div>
-            <RecipeCard recipe={tuesdayBreakfast}></RecipeCard>
-            <RecipeCard recipe={tuesdayLunch}></RecipeCard>
-            <RecipeCard recipe={tuesdayDinner}></RecipeCard>
+            <div>
+              <h2>Breakfast</h2>
+              <RecipeCard recipe={tuesdayBreakfast}></RecipeCard>
+            </div>
+            <div>
+              <h2>Lunch</h2>
+              <RecipeCard recipe={tuesdayLunch}></RecipeCard>
+            </div>
+            <div>
+              <h2>Dinner</h2>
+              <RecipeCard recipe={tuesdayDinner}></RecipeCard>
+            </div>
           </div>
         )}
         {activeTab === "wednesday" && (
           <div>
-            <RecipeCard recipe={wednesdayBreakfast}></RecipeCard>
-            <RecipeCard recipe={wednesdayLunch}></RecipeCard>
-            <RecipeCard recipe={wednesdayDinner}></RecipeCard>
+            <div>
+              <h2>Breakfast</h2>
+              <RecipeCard recipe={wednesdayBreakfast}></RecipeCard>
+            </div>
+            <div>
+              <h2>Lunch</h2>
+              <RecipeCard recipe={wednesdayLunch}></RecipeCard>
+            </div>
+            <div>
+              <h2>Dinner</h2>
+              <RecipeCard recipe={wednesdayDinner}></RecipeCard>
+            </div>
           </div>
         )}
         {activeTab === "thursday" && (
           <div>
-            <RecipeCard recipe={thursdayBreakfast}></RecipeCard>
-            <RecipeCard recipe={thursdayLunch}></RecipeCard>
-            <RecipeCard recipe={thursdayDinner}></RecipeCard>
+            <div>
+              <h2>Breakfast</h2>
+              <RecipeCard recipe={thursdayBreakfast}></RecipeCard>
+            </div>
+            <div>
+              <h2>Lunch</h2>
+              <RecipeCard recipe={thursdayLunch}></RecipeCard>
+            </div>
+            <div>
+              <h2>Dinner</h2>
+              <RecipeCard recipe={thursdayDinner}></RecipeCard>
+            </div>
           </div>
         )}
         {activeTab === "friday" && (
           <div>
-            <RecipeCard recipe={fridayBreakfast}></RecipeCard>
-            <RecipeCard recipe={fridayLunch}></RecipeCard>
-            <RecipeCard recipe={fridayDinner}></RecipeCard>
+            <div>
+              <h2>Breakfast</h2>
+              <RecipeCard recipe={fridayBreakfast}></RecipeCard>
+            </div>
+            <div>
+              <h2>Lunch</h2>
+              <RecipeCard recipe={fridayLunch}></RecipeCard>
+            </div>
+            <div>
+              <h2>Dinner</h2>
+              <RecipeCard recipe={fridayDinner}></RecipeCard>
+            </div>
           </div>
         )}
         {activeTab === "saturday" && (
           <div>
-            <RecipeCard recipe={saturdayBreakfast}></RecipeCard>
-            <RecipeCard recipe={saturdayLunch}></RecipeCard>
-            <RecipeCard recipe={saturdayDinner}></RecipeCard>
+            <div>
+              <h2>Breakfast</h2>
+              <RecipeCard recipe={saturdayBreakfast}></RecipeCard>
+            </div>
+            <div>
+              <h2>Lunch</h2>
+              <RecipeCard recipe={saturdayLunch}></RecipeCard>
+            </div>
+            <div>
+              <h2>Dinner</h2>
+              <RecipeCard recipe={saturdayDinner}></RecipeCard>
+            </div>
           </div>
         )}
         {activeTab === "sunday" && (
           <div>
-            <RecipeCard recipe={sundayBreakfast}></RecipeCard>
-            <RecipeCard recipe={sundayLunch}></RecipeCard>
-            <RecipeCard recipe={sundayDinner}></RecipeCard>
+            <div>
+              <h2>Breakfast</h2>
+              <RecipeCard recipe={sundayBreakfast}></RecipeCard>
+            </div>
+            <div>
+              <h2>Lunch</h2>
+              <RecipeCard recipe={sundayLunch}></RecipeCard>
+            </div>
+            <div>
+              <h2>Dinner</h2>
+              <RecipeCard recipe={sundayDinner}></RecipeCard>
+            </div>
           </div>
         )}
       </div>
