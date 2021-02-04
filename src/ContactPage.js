@@ -1,7 +1,7 @@
 import { Navigation } from './components/Navigation';
 
 
-export function Contact() {
+export function ContactPage() {
   return (
     <div>
       <header className="App-header">

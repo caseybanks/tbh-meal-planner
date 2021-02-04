@@ -1,7 +1,7 @@
 import { Navigation } from './components/Navigation';
 
 
-export function HowToUse() {
+export function HowToUsePage() {
   return (
     <div>
       <header className="App-header">

@@ -5,9 +5,9 @@ import reportWebVitals from './reportWebVitals';
 // Importing the Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { WeekPlanner } from './WeekPlannerPage';
-import { HowToUse } from './HowToUsePage';
-import { Contact } from './ContactPage';
+import { WeekPlannerPage } from './WeekPlannerPage';
+import { HowToUsePage } from './HowToUsePage';
+import { ContactPage } from './ContactPage';
 import './assets/index.css';
 import './assets/style.css';
 
@@ -16,9 +16,9 @@ ReactDOM.render(
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/contact" render={() => <Contact />}></Route>
-          <Route exact path="/howtouse" render={() => <HowToUse />}></Route>
-          <Route exact path="/" render={() => <WeekPlanner />}></Route>
+          <Route exact path="/contact" render={() => <ContactPage />}></Route>
+          <Route exact path="/howtouse" render={() => <HowToUsePage />}></Route>
+          <Route exact path="/" render={() => <WeekPlannerPage />}></Route>
         </Switch>
       </Router>
     </div>

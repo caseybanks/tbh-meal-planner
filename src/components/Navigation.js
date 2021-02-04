@@ -5,7 +5,7 @@ import { MENU } from '../common/Menu';
 import logo from '../assets/tbh-logo.png';
 
 
-export function Navigation() {
+export function Navigation({activePageKey}) {
   const menuItems = Object.values(MENU['menuItems']);
 
   return (
@@ -19,7 +19,7 @@ export function Navigation() {
           className="justify-content-end Nav-Menu"
           id="responsive-navbar-nav"
         >
-          <Nav defaultActiveKey="weekplanner">
+          <Nav defaultActiveKey={activePageKey}>
             {menuItems.map((menuItem) => (
               <Nav.Item key={menuItem.key}>
                 <Nav.Link href={menuItem.href} eventKey={menuItem.key}>
